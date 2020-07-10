@@ -192,6 +192,23 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
          mAppEventLogger.logPushNotificationOpen(Arguments.toBundle(payload));
      }
 
+    @ReactMethod
+    public void logCompleteRegistrationEvent(String registrationMethod) {
+        Bundle params = new Bundle();
+        params.putString(AppEventsConstants.EVENT_PARAM_REGISTRATION_METHOD, registrationMethod);
+        mAppEventLogger.logEvent(AppEventsConstants.EVENT_NAME_COMPLETED_REGISTRATION, params);
+    }
+
+    @ReactMethod
+    public void logStartTrial(ReadableMap parameters) {
+        mAppEventLogger.logEvent(AppEventsConstants.EVENT_NAME_START_TRIAL, Arguments.toBundle(parameters));
+    }
+    
+    @ReactMethod
+    public void logSubmitApplication() {
+        mAppEventLogger.logEvent(AppEventsConstants.EVENT_NAME_SUBMIT_APPLICATION);
+    }
+
     /**
      * Sets a user id to associate with all app events. This can be used to associate your own
      * user id with the app events logged from this instance of an application.
