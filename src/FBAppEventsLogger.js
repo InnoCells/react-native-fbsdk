@@ -105,6 +105,27 @@ module.exports = {
   },
 
   /**
+   * Logs an app event that tracks that the application was complete registration.
+   */
+  logCompleteRegistrationEvent(method: ?string) {
+    AppEventsLogger.logCompleteRegistrationEvent(method);
+  },
+
+  /**
+   * Logs an app event that tracks that the application was start a trial period.
+   */
+  logStartTrial(payload: ?Object) {
+    AppEventsLogger.logStartTrial(payload);
+  },
+
+  /**
+   * Logs an app event that tracks that the application was start a trial period.
+   */
+  logSubmitApplication() {
+    AppEventsLogger.logSubmitApplication();
+  },
+
+  /**
    * Explicitly kicks off flushing of events to Facebook.
    */
   flush() {

@@ -119,6 +119,19 @@ RCT_EXPORT_METHOD(setPushNotificationsDeviceToken:(NSString *)deviceToken)
   [FBSDKAppEvents setPushNotificationsDeviceToken:[RCTConvert NSData:deviceToken]];
 }
 
+RCT_EXPORT_METHOD(logSubmitApplication) {
+  [FBSDKAppEvents logEvent:FBSDKAppEventNameSubmitApplication];
+}
+
+RCT_EXPORT_METHOD(logStartTrial:(NSDictionary *)params) {
+  [FBSDKAppEvents logEvent:FBSDKAppEventNameStartTrial parameters:params];
+}
+
+RCT_EXPORT_METHOD(logCompleteRegistrationEvent:(NSString *)registrationMethod) {
+  NSDictionary *params = @{FBSDKAppEventParameterNameRegistrationMethod : registrationMethod};
+  [FBSDKAppEvents logEvent:FBSDKAppEventNameCompletedRegistration parameters:params];
+}
+
 static NSDictionary<NSString *, id> *RCTDictionaryWithoutNullValues(NSDictionary<NSString *, id> *input)
 {
   if (input == nil) {
