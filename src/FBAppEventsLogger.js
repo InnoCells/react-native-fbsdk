@@ -23,6 +23,7 @@
 'use strict';
 
 const AppEventsLogger = require('react-native').NativeModules.FBAppEventsLogger;
+const {Platform} = require('react-native');
 /**
  * Controls when an AppEventsLogger sends log events to the server
  */
@@ -145,6 +146,31 @@ module.exports = {
    */
   async getUserID(): Promise<?string> {
     return await AppEventsLogger.getUserID();
+  },
+
+  /**
+   * Returns anonymous id or null if not set
+   */
+  async getAnonymousID(): Promise<?string> {
+    return await AppEventsLogger.getAnonymousID();
+  },
+
+  /**
+   * Returns advertiser id or null if not set
+   */
+  async getAdvertiserID(): Promise<?string> {
+    return await AppEventsLogger.getAdvertiserID();
+  },
+
+  /**
+   * Returns advertiser id or null if not set.
+   * @platform android
+   */
+  async getAttributionID(): Promise<?string> {
+    if (Platform.OS === 'ios') {
+      return null;
+    }
+    return await AppEventsLogger.getAttributionID();
   },
 
   /**
